@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import psycopg2
-import os
 from werkzeug.utils import secure_filename
+import os
+import psycopg2
+import urllib.parse
 
 web = Flask(__name__)
 web.secret_key = '12345'
@@ -11,14 +12,26 @@ ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
 web.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# DB Connection - PostgreSQL
-db = psycopg2.connect(
-    host="localhost",
-    user="flask_user",          # Change to your PostgreSQL username
-    password="flask_password",  # Change to your PostgreSQL password
-    dbname="enrollment_db"
-)
-cursor = db.cursor()
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    # Parse the DATABASE_URL to components
+    result = urllib.parse.urlparse(DATABASE_URL)
+    db = psycopg2.connect(
+        dbname=result.path[1:],  # skip leading '/'
+        user=result.username,
+        password=result.password,
+        host=result.hostname,
+        port=result.port
+    )
+else:
+    # Fallback for local development
+    db = psycopg2.connect(
+        host="localhost",
+        user="postgre",
+        password="2004",
+        dbname="enrollment_db"
+    )
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
