@@ -1,0 +1,98 @@
+
+/* Header Bar */
+.header-bar {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+footer {
+    color: #0c0303;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border-radius: 0 0 8px 8px;
+}
+.header-bar h2 {
+    color: #b30000;
+    font-size: 1.0rem; 
+}
+
+/* Step indicator */
+.step-indicator {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: 70px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Inputs */
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.row input,
+.row select {
+  flex: 1;
+  padding: 10px;
+  border: 1.5px solid #b30000;
+  border-radius: 6px;
+  outline: none;
+}
+.row-inline {
+  margin-bottom: 15px;
+}
+.row-inline label {
+  margin-right: 15px;
+}
+.row-inline input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Divider */
+hr {
+  border: none;
+  border-top: 1.5px solid #b30000;
+  margin: 15px 0;
+}
+
+/* Checkbox */
+.checkbox-row {
+  margin-bottom: 15px;
+}
+.checkbox-row input[type="checkbox"] {
+  accent-color: #b30000;
+  margin-right: 6px;
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.btn-finish {
+  background: #b30000;
+  color: #fff;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-cancel {
+  background: #fff;
+  color: #000;
+  padding: 10px 25px;
+  border: 1.5px solid #000;
+  border-radius: 25px;
+  cursor: pointer;
+}

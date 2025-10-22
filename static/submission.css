@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header {
+  background: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header h2 {
+  color: #b30000;
+  font-size: 1rem;
+}
+
+
+.text {
+  text-align: left;
+  margin-left: 40px;
+  font-size: 0.95rem;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Main content */
+.content {
+  padding: 25px 20px 40px;
+  min-height: calc(100vh - 120px);
+}
+
+.fields.form-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fields button {
+  width: 100%;
+  background: #fff;
+  border: none;
+  padding: 12px 15px; 
+  font-size: 15px;
+  font-weight: bold;
+  color: #a00000;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px; 
+}
+
+.fields button:hover {
+  background: #fbecec;
+}
+
+.toggle-btn.active .arrow {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.details {
+    display: none; 
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.field {
+    flex: 1 1 calc(33.33% - 10px);
+    min-width: 120px;
+}
+
+.field.full-width {
+    flex: 1 1 100%;
+}
+
+
+.details p {
+  margin: 5px 0;
+}
+
+.details hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+/* Buttons */
+.buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+a.btn {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 5px;
+  transition: 0.3s ease;
+}
+
+.btn-red {
+  background: #a00000;
+  color: #fff;
+  border: none;
+}
+
+.btn-red:hover {
+  background: #800000;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 2px solid #a00000;
+  color: #a00000;
+}
+
+.btn-outline:hover {
+  background: #a00000;
+  color: #fff;
+}

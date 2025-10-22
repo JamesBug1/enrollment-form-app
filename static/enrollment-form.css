@@ -1,0 +1,140 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Bar */
+.header-bar {
+  background: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.header-bar h2 {
+  color: #b30000;
+}
+
+/* Container */
+.form-container {
+  max-width: 700px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.steps a {
+  text-decoration: none; /* removes the underline */
+  border: 2px solid #b30000;
+  background: none;
+  color: #b30000;
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block; /* makes it behave like button */
+}
+
+.steps a.active {
+  background: #b30000;
+  color: white;
+}
+
+
+.step-text {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Step Progress */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+.step-btn {
+  border: 2px solid #b30000;
+  background: none;
+  color: #b30000;
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.step-btn.active {
+  background: #b30000;
+  color: white;
+}
+.arrow {
+  font-size: 18px;
+}
+
+/* Inputs */
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.row input,
+.row select {
+  flex: 1;
+  padding: 10px;
+  border: 1.5px solid #b30000;
+  border-radius: 6px;
+  outline: none;
+}
+.row-inline {
+  margin-bottom: 15px;
+}
+.row-inline label {
+  margin-right: 15px;
+}
+.row-inline input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Divider */
+hr {
+  border: none;
+  border-top: 1.5px solid #b30000;
+  margin: 15px 0;
+}
+
+/* Checkbox */
+.checkbox-row {
+  margin-bottom: 15px;
+}
+.checkbox-row input[type="checkbox"] {
+  accent-color: #b30000;
+  margin-right: 6px;
+}
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+.btn-next, .btn-finish {
+  background: #b30000;
+  color: #fff;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-cancel {
+  background: #fff;
+  color: #000;
+  padding: 10px 25px;
+  border: 1.5px solid #000;
+  border-radius: 25px;
+  cursor: pointer;
+}

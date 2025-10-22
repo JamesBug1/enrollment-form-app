@@ -1,0 +1,124 @@
+/* Specific styles for Educational Background page */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+footer {
+    color: #0c0303;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Header Bar */
+.enrollment-header {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.enrollment-header h2 {
+    color: #b30000;
+    font-size: 1.0rem; 
+}
+
+/* Step indicator */
+.step-indicator {
+    font-size: 0.95rem;
+    margin-top: 40px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #444;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+
+/* First Gen Row */
+.first-gen {
+    grid-column: span;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.first-gen input[type="radio"] {
+    margin-right: 0.5rem;
+
+}
+
+/* Schools label */
+.school-label {
+    grid-column: span 3;
+    font-weight: bold;
+}
+
+/* Input fields */
+input {
+    padding: 0.6rem;
+    border: 2px solid #b71c1c;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+}
+
+input:focus {
+    border-color: #d32f2f;
+    box-shadow: 0 0 5px rgba(183,28,28,0.3);
+}
+
+/* Divider */
+.form-divider {
+    grid-column: span 3;
+    border: none;
+    border-top: 2px solid #b71c1c;
+    margin: 0.8rem 0;
+}
+
+/* Buttons */
+.button-row {
+    grid-column: span 3;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+button {
+    padding: 0.7rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+/* Next button (red) */
+button.next {
+    background: #b71c1c;
+    color: white;
+}
+
+/* Cancel button */
+button.cancel {
+    background: white;
+    border: 2px solid #b71c1c;
+    color: #b71c1c;
+}

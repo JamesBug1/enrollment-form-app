@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Enrollment Form</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='enrollment-form.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='upload-requirements.css') }}">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header-bar">
+    <h2>Student Enrollment Form</h2>
+  </div>
+
+  <div class="step-indicator">
+    Step 4 out of 4: Upload Requirements
+  </div>
+
+  <div class="form-container">
+
+    <!-- Step Progress -->
+    <div class="steps">
+      <a href="{{ url_for('form') }}" class="step-btn">Personal Data</a>
+      <span class="arrow">→</span>
+      <a href="{{ url_for('educational_background') }}" class="step-btn">Educational Background</a>
+      <span class="arrow">→</span>
+      <a href="{{ url_for('course_detail') }}" class="step-btn">Course Detail</a>
+      <span class="arrow">→</span>
+      <a href="{{ url_for('upload_requirements') }}" class="step-btn active">Upload Requirements</a>
+    </div>
+
+    <form id="uploadForm" method="POST" action="{{ url_for('upload_requirements') }}" enctype="multipart/form-data">
+
+      <!-- Medical Certificate -->
+      <div class="file-section">
+        <label>Medical Certificate</label>
+        <div class="file-box">
+          <input type="file" name="medical_certificate" id="medical_certificate" accept=".pdf, .jpg, .jpeg, .png" required>
+        </div>
+        <p class="file-info">Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
+        File name must follow this format: <strong>Lastname_Firstname_Medical.pdf</strong></p>
+      </div>
+
+      <!-- Grades -->
+      <div class="file-section">
+        <label>Grades</label>
+        <div class="file-box">
+          <input type="file" name="grades" id="grades" accept=".pdf, .jpg, .jpeg, .png" required>
+        </div>
+        <p class="file-info">Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
+        File name must follow this format: <strong>Lastname_Firstname_Grades.pdf</strong></p>
+      </div>
+
+      <!-- Organization Fee Receipt -->
+      <div class="file-section">
+        <label>Organization Fee Receipt</label>
+        <div class="file-box">
+          <input type="file" name="org_fee" id="org_fee" accept=".pdf, .jpg, .jpeg, .png" required>
+        </div>
+        <p class="file-info">Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
+        File name must follow this format: <strong>Lastname_Firstname_OrgFee.pdf</strong></p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-row">
+        <button type="submit" class="btn-finish">Finish</button>
+        <button type="button" class="btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Enrollment Form | Group 2
+  </footer>
+
+</body>
+</html>

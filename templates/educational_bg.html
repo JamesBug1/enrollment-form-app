@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Enrollment Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='enrollment-form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='educational_bg.css') }}">
+</head>
+<body>
+
+<header class="enrollment-header">
+    <h2>Student Enrollment Form</h2>
+</header>
+
+<div class="step-indicator">
+    Step 2 out of 4: Educational Background
+</div>
+
+<div class="form-container">
+
+    <!-- Step Progress -->
+    <div class="steps">
+        <a href="{{ url_for('form') }}" class="step-btn">Personal Data</a>
+        <span class="arrow">→</span>
+        <a href="{{ url_for('educational_background') }}" class="step-btn active">Educational Background</a>
+        <span class="arrow">→</span>
+        <a href="{{ url_for('course_detail') }}" class="step-btn">Course Detail</a>
+        <span class="arrow">→</span>
+        <a href="{{ url_for('upload_requirements') }}" class="step-btn">Upload Requirements</a>
+    </div>
+
+
+    <form id="eduForm" method="POST" action="{{ url_for('educational_background') }}">
+
+        <div class="first-gen">
+            <label>Are you a first generation student?</label> 
+            <label><input type="radio" name="first_gen" value="yes" required> Yes</label>
+            <label><input type="radio" name="first_gen" value="no" required> No</label>
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- Educational Background Rows -->
+        <label class="school-label">Schools</label>
+
+        <!-- Elementary -->
+        <input type="text" name="elementary" placeholder="Elementary" required>
+        <input type="text" name="elem_year" placeholder="Academic Year" required>
+        <input type="text" name="elem_honors" placeholder="Honors Received" required>
+
+        <!-- High School -->
+        <input type="text" name="highschool" placeholder="High School" required>
+        <input type="text" name="hs_year" placeholder="Academic Year" required>
+        <input type="text" name="hs_honors" placeholder="Honors Received" required>
+
+        <!-- College -->
+        <input type="text" name="college" placeholder="College" required>
+        <input type="text" name="college_year" placeholder="Academic Year" required>
+        <input type="text" name="college_honors" placeholder="Honors Received" required>
+
+        <hr class="form-divider">
+
+        <!-- Buttons -->
+        <div class="button-row">
+            <button type="submit" class="next">Next</button>
+            <button type="button" class="cancel">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script>
+function validateAndGo() {
+    const form = document.getElementById('eduForm');
+    if (form.checkValidity()) {
+        form.submit();  // submits to Flask route
+    } else {
+        form.reportValidity();  // show HTML5 validation messages
+    }
+}
+</script>
+
+<footer>
+    &copy; 2025 Enrollment Form | Group 2
+</footer>
+
+</body>
+</html>

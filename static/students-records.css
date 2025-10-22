@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.title {
+  color: #a00000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Content */
+.content {
+  padding: 20px;
+}
+
+/* Records Header */
+.records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.records-header h3 {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Controls*/
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-sort {
+  background: #fff;
+  border: 2px solid #a00000;
+  color: #a00000;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-sort:hover {
+  background: #fbecec;
+}
+
+/* Search box */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 6px 30px 6px 10px;
+  border: 2px solid #a00000;
+  border-radius: 6px;
+  outline: none;
+}
+
+.search-box .search-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a00000;
+  font-size: 14px;
+}
+
+/* Table */
+.table-container {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #fbecec;
+  color: #a00000;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}

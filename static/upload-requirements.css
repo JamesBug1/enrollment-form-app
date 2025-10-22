@@ -1,0 +1,105 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+
+.header-bar {
+  background-color: #fff;
+  padding: 15px 0;
+  text-align: center;
+  border-bottom: 3px solid #c1272d;
+}
+
+.step-indicator {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.form-container {
+  width: 80%;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.steps {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.step-btn {
+  border: 1px solid #c1272d;
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #c1272d;
+  font-weight: 600;
+}
+
+.step-btn.active {
+  background-color: #c1272d;
+  color: #fff;
+}
+
+.arrow {
+  margin: 0 10px;
+  color: #c1272d;
+}
+
+.file-section {
+  border: 2px solid #c1272d;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.file-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.file-box input[type="file"] {
+  background-color: #c1272d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.file-info {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #444;
+}
+
+.button-row {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-finish {
+  background-color: #c1272d;
+  color: #fff;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-cancel {
+  background-color: #fff;
+  color: #c1272d;
+  border: 2px solid #c1272d;
+  padding: 10px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}

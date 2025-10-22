@@ -1,0 +1,118 @@
+/* Specific styles for personal details page */
+
+
+/* Header Bar */
+.header-bar {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+footer {
+    color: #0c0303;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border-radius: 0 0 8px 8px;
+}
+
+.header-bar h2 {
+    color: #b30000;
+    font-size: 1.0rem; 
+}
+/* Container */
+.form-container {
+  max-width: 700px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Step indicator */
+.step-indicator {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: 70px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Form Card */
+.form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Form Layout */
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+input, select {
+    padding: 10px; /* uniform */
+    border: 1.5px solid #b30000;
+    border-radius: 6px;
+    font-size: 0.95rem; /* uniform */
+    outline: none;
+    width: 100%;
+}
+
+input:focus, select:focus {
+    border-color: #d32f2f;
+    box-shadow: 0 0 5px rgba(183,28,28,0.3);
+}
+
+/* Full-width fields */
+.full-width {
+    grid-column: span 3;
+}
+
+/* Divider */
+.form-divider {
+    grid-column: span 3;
+    border: none;
+    border-top: 1.5px solid #b30000;
+    margin: 0.5rem 0;
+}
+
+/* Buttons */
+.button-row {
+    grid-column: span 3;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-next {
+    background: #b30000;
+    color: #fff;
+    padding: 10px 25px; /* uniform */
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #fff;
+    color: #000;
+    padding: 10px 25px; /* uniform */
+    border: 1.5px solid #b30000;
+    border-radius: 25px;
+    cursor: pointer;
+}

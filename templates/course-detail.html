@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Enrollment Form</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='course-detail.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='enrollment-form.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <div class="header-bar">
+    <h2>Student Enrollment Form</h2>
+  </div>
+
+  <div class="step-indicator">
+      Step 3 out of 4: Course Detail
+  </div>
+
+  <div class="form-container">
+
+    <!-- Step Progress -->
+    <div class="steps">
+      <a href="{{ url_for('form') }}" class="step-btn">Personal Data</a>
+      <span class="arrow">→</span>
+      <a href="{{ url_for('educational_background') }}" class="step-btn">Educational Background</a>
+      <span class="arrow">→</span>
+      <a href="{{ url_for('course_detail') }}" class="step-btn active">Course Detail</a>
+      <span class="arrow">→</span>
+      <a href="{{ url_for('upload_requirements') }}" class="step-btn">Upload Requirements</a>
+  </div>
+
+
+    <!-- Form with id -->
+    <form id="form-7" action="{{ url_for('course_detail') }}" method="POST">
+      <div class="row">
+        <input type="text" name="id_number" placeholder="ID Number" required>
+        <select name="year_level" required>
+          <option value="">Select Year Level</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <!-- Auto course field -->
+        <input type="text" value="Bachelor of Science in Information Technology" readonly>
+        <!-- Auto major field -->
+        <input type="text" value="Programming" readonly>
+      </div>
+
+      <div class="row-inline">
+        <label>Enrollment Status:</label>
+        <label><input type="radio" name="enroll" value="Regular" required> Regular</label>
+        <label><input type="radio" name="enroll" value="Irregular"> Irregular</label>
+      </div>
+
+      <div class="row-inline">
+        <label>Student Status:</label>
+        <label><input type="radio" name="student" value="New" required> New</label>
+        <label><input type="radio" name="student" value="Old"> Old</label>
+        <label><input type="radio" name="student" value="Transferee"> Transferee</label>
+        <label><input type="radio" name="student" value="Returnee"> Returnee</label>
+        <label><input type="radio" name="student" value="Shiftee"> Shiftee</label>
+      </div>
+
+      <!-- Divider -->
+      <hr>
+
+      <div class="checkbox-row">
+        <label>
+          <input type="checkbox" name="certify" checked required>
+          I hereby certify that all entries are true and correct. I do solemnly swear to abide with laws, policies, rules and regulations set forth by the university.
+        </label>
+      </div>
+
+      <!-- Divider -->
+      <hr>
+
+      <div class="btn-row">
+        <button type="submit" formaction="{{ url_for('upload_requirements') }}" class="btn-next">Next</button>
+        <button type="button" class="btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("form-7").addEventListener("submit", function(event) {
+      const idInput = this.id_number.value.trim();
+      // Check if ID is exactly 7 digits
+      const idPattern = /^\d{7}$/;
+
+      if (!idPattern.test(idInput)) {
+        alert("ID Number must be exactly 7 digits.");
+        event.preventDefault(); // Prevent form submission
+      }
+    });
+  </script>
+
+<footer>
+    &copy; 2025 Enrollment Form | Group 2
+</footer>
+
+</body>
+</html>

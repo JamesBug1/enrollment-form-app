@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submission Summary</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='submission.css') }}">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h2>Submission Summary</h2>
+    </div>
+
+    <!-- Top Text -->
+    <div class="text">
+        <p>All sections completed. Please review and confirm.</p>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content">
+
+       <!-- Personal Data Section -->
+        <div class="fields form-card">
+            <button class="toggle-btn">
+                <span class="field-text">Personal Data</span> <span class="arrow">▼</span>
+            </button>
+            <div class="details">
+                <!-- First Row -->
+                <div class="row">
+                    <div class="field"><strong>First Name:</strong> __________</div>
+                    <div class="field"><strong>Last Name:</strong> __________</div>
+                    <div class="field"><strong>Middle Name:</strong> __________</div>
+                </div>
+
+                <!-- Second Row -->
+                <div class="row">
+                    <div class="field full-width"><strong>Address:</strong> __________</div>
+                    <div class="field"><strong>Contact:</strong> __________</div>
+                    <div class="field"><strong>District:</strong> __________</div>
+                </div>
+
+                <!-- Third Row -->
+                <div class="row">
+                    <div class="field full-width"><strong>Email:</strong> __________</div>
+                    <div class="field"><strong>Gender:</strong> __________</div>
+                    <div class="field"><strong>Birthdate:</strong> __________</div>
+                    <div class="field"><strong>Age:</strong> __________</div>
+                </div>
+
+                <!-- Fourth Row -->
+                <div class="row">
+                    <div class="field"><strong>Citizenship:</strong> __________</div>
+                    <div class="field"><strong>Civil Status:</strong> __________</div>
+                    <div class="field"><strong>Religion:</strong> __________</div>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Parent & Guardian Details -->
+                <div class="row">
+                    <div class="field"><strong>Father’s Name:</strong> __________</div>
+                    <div class="field"><strong>Occupation:</strong> __________</div>
+                    <div class="field"><strong>Contact No.:</strong> __________</div>
+                </div>
+
+                <div class="row">
+                    <div class="field"><strong>Mother’s Name:</strong> __________</div>
+                    <div class="field"><strong>Occupation:</strong> __________</div>
+                    <div class="field"><strong>Contact No.:</strong> __________</div>
+                </div>
+
+                <div class="row">
+                    <div class="field"><strong>Guardian’s Name:</strong> __________</div>
+                    <div class="field"><strong>Occupation:</strong> __________</div>
+                    <div class="field"><strong>Contact No.:</strong> __________</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Background Section -->
+        <div class="fields form-card">
+            <button class="toggle-btn">
+                <span class="field-text">Educational Background</span> <span class="arrow">▼</span>
+            </button>
+            <div class="details">
+                <div class="row">
+                    <div class="field"><strong>First Generation Student:</strong> __________</div>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Elementary -->
+                <div class="row">
+                    <div class="field"><strong>Elementary School:</strong> __________</div>
+                    <div class="field"><strong>Academic Year:</strong> __________</div>
+                    <div class="field"><strong>Honors Received:</strong> __________</div>
+                </div>
+
+                <!-- High School -->
+                <div class="row">
+                    <div class="field"><strong>High School:</strong> __________</div>
+                    <div class="field"><strong>Academic Year:</strong> __________</div>
+                    <div class="field"><strong>Honors Received:</strong> __________</div>
+                </div>
+
+                <!-- College -->
+                <div class="row">
+                    <div class="field"><strong>College:</strong> __________</div>
+                    <div class="field"><strong>Academic Year:</strong> __________</div>
+                    <div class="field"><strong>Honors Received:</strong> __________</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Detail Section -->
+        <div class="fields form-card">
+            <button class="toggle-btn">
+                <span class="field-text">Course Detail</span> <span class="arrow">▼</span>
+            </button>
+            <div class="details">
+                <div class="row">
+                    <div class="field"><strong>ID Number:</strong> __________</div>
+                    <div class="field"><strong>Year Level:</strong> __________</div>
+                    <div class="field"><strong>Course:</strong> __________</div>
+                </div>
+
+                <div class="row">
+                    <div class="field"><strong>Major:</strong> __________</div>
+                    <div class="field"><strong>Enrollment Status:</strong> __________</div>
+                    <div class="field"><strong>Student Status:</strong> __________</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="buttons">
+            <button class="btn btn-red" onclick="confirmEnrollment()">Confirm & Finalize Enrollment</button>
+            <a href="personaldetails.html" class="btn btn-outline">Edit Information</a>
+        </div>
+    </div>
+
+<script>
+const toggleButtons = document.querySelectorAll('.toggle-btn');
+toggleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const details = btn.nextElementSibling;
+        const isVisible = details.style.display === 'block';
+
+        document.querySelectorAll('.details').forEach(d => d.style.display = 'none');
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+
+        if (!isVisible) {
+            details.style.display = 'block';
+            btn.classList.add('active');
+        }
+    });
+});
+
+function confirmEnrollment() {
+    alert("Enrollment Confirmed!");
+}
+</script>
+
+</body>
+</html>
