@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import mysql.connector
+import psycopg2
 import os
 from werkzeug.utils import secure_filename
 
@@ -11,17 +11,21 @@ ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
 web.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# DB Connection
-db = mysql.connector.connect(
+# DB Connection - PostgreSQL
+db = psycopg2.connect(
     host="localhost",
-    user="root",
-    password="",
-    database="enrollment_db"
+    user="flask_user",          # Change to your PostgreSQL username
+    password="flask_password",  # Change to your PostgreSQL password
+    dbname="enrollment_db"
 )
 cursor = db.cursor()
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def get_last_insert_id(cursor, table_name, id_column):
+    cursor.execute(f"SELECT currval(pg_get_serial_sequence('{table_name}', '{id_column}'))")
+    return cursor.fetchone()[0]
 
 @web.route('/')
 def home():
@@ -98,11 +102,29 @@ def upload_requirements():
     if request.method == 'POST':
         uploaded_files = {}
 
-        for field in ['medical_certificate', 'grades', 'org_fee']:
+        personal_data = session.get('personal_data')
+        if not personal_data:
+            return redirect(url_for('form'))
+
+        last_name = personal_data['last_name']
+        first_name = personal_data['first_name']
+
+        expected_suffixes = {
+            'medical_certificate': 'Medical',
+            'grades': 'Grades',
+            'org_fee': 'OrgFee'
+        }
+
+        for field, suffix in expected_suffixes.items():
             file = request.files.get(field)
 
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
+
+                expected_prefix = f"{last_name}_{first_name}_{suffix}"
+                if not filename.startswith(expected_prefix):
+                    return f"<p>Invalid file name for {field}. Must start with: {expected_prefix}</p>"
+
                 save_path = os.path.join(web.config['UPLOAD_FOLDER'], filename)
                 file.save(save_path)
                 uploaded_files[field] = filename
@@ -130,8 +152,9 @@ def finalize_enrollment():
     pd = session.get('personal_data')
     education = session.get('education')
     course = session.get('course')
+    uploaded = session.get('uploaded_files')
 
-    if not pd or not education or not course:
+    if not pd or not education or not course or not uploaded:
         return redirect(url_for('home'))
 
     # Insert into student table
@@ -146,7 +169,7 @@ def finalize_enrollment():
     )
     cursor.execute(student_sql, student_values)
     db.commit()
-    student_id = cursor.lastrowid
+    student_id = get_last_insert_id(cursor, 'student', 'studentid')
 
     # Insert into parent table
     parent_sql = """
@@ -199,6 +222,19 @@ def finalize_enrollment():
         education['elem_honors'], education['highschool'], education['hs_year'],
         education['hs_honors'], education['college'], education['college_year'],
         education['college_honors']
+    ))
+    db.commit()
+
+    # Insert into requirements table
+    requirements_sql = """
+        INSERT INTO requirements (StudentId, medical_certificate, grades, org_fee)
+        VALUES (%s, %s, %s, %s)
+    """
+    cursor.execute(requirements_sql, (
+        student_id,
+        uploaded.get('medical_certificate'),
+        uploaded.get('grades'),
+        uploaded.get('org_fee')
     ))
     db.commit()
 
