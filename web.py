@@ -12,13 +12,16 @@ ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
 web.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+#DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://enrollment_db_c0sc_user:4jXABgSJJWzzZ4nEmAnipixPSsPoorkJ@dpg-d3sdfbndiees738clih0-a/enrollment_db_c0sc')
+
+#conn = psycopg2.connect(DATABASE_URL)
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
-    # Parse the DATABASE_URL to components
+    # Parse DATABASE_URL
     result = urllib.parse.urlparse(DATABASE_URL)
     db = psycopg2.connect(
-        dbname=result.path[1:],  # skip leading '/'
+        dbname=result.path[1:],
         user=result.username,
         password=result.password,
         host=result.hostname,
