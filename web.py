@@ -12,11 +12,10 @@ ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
 web.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-#DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://enrollment_db_c0sc_user:4jXABgSJJWzzZ4nEmAnipixPSsPoorkJ@dpg-d3sdfbndiees738clih0-a/enrollment_db_c0sc')
+# DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://enrollment_db_c0sc_user:4jXABgSJJWzzZ4nEmAnipixPSsPoorkJ@dpg-d3sdfbndiees738clih0-a/enrollment_db_c0sc')
+# conn = psycopg2.connect(DATABASE_URL)
 
-#conn = psycopg2.connect(DATABASE_URL)
 DATABASE_URL = os.environ.get('DATABASE_URL')
-
 if DATABASE_URL:
     # Parse DATABASE_URL
     result = urllib.parse.urlparse(DATABASE_URL)
@@ -42,6 +41,8 @@ def allowed_file(filename):
 def get_last_insert_id(cursor, table_name, id_column):
     cursor.execute(f"SELECT currval(pg_get_serial_sequence('{table_name}', '{id_column}'))")
     return cursor.fetchone()[0]
+
+# ------------------ Routes ------------------
 
 @web.route('/')
 def home():
@@ -117,15 +118,12 @@ def course_detail():
 def upload_requirements():
     if request.method == 'POST':
         uploaded_files = {}
-
         personal_data = session.get('personal_data')
         if not personal_data:
             return redirect(url_for('form'))
 
         last_name = personal_data['last_name']
         first_name = personal_data['first_name']
-
-        # Define expected suffixes for files
         expected_suffixes = {
             'medical_certificate': 'Medical',
             'grades': 'Grades',
@@ -134,36 +132,21 @@ def upload_requirements():
 
         for field, suffix in expected_suffixes.items():
             file = request.files.get(field)
-
             if file and allowed_file(file.filename):
-                original_filename = file.filename
-                filename = secure_filename(original_filename)
-
-                # Apply the same sanitization to the expected prefix
-                expected_prefix = secure_filename(f"{last_name}_{first_name}_{suffix}")
-
-                # Compare using sanitized names
+                filename = secure_filename(file.filename)
+                expected_prefix = f"{last_name}_{first_name}_{suffix}"
                 if not filename.startswith(expected_prefix):
-                    return (
-                        f"<p>Invalid file name for <strong>{field}</strong>.<br>"
-                        f>Your uploaded file: {original_filename}<br>"
-                        f>Expected format: {expected_prefix}_[something].pdf/jpg/png</p>"
-                    )
-
+                    return f"<p>Invalid file name for {field}. Must start with: {expected_prefix}</p>"
                 save_path = os.path.join(web.config['UPLOAD_FOLDER'], filename)
                 file.save(save_path)
                 uploaded_files[field] = filename
             else:
-                return (
-                    f"<p>Invalid file or format for <strong>{field}</strong>.<br>"
-                    f"Allowed formats: PDF, JPG, JPEG, PNG</p>"
-                )
+                return f"<p>Invalid file or format for {field}. Allowed formats: PDF, JPG, PNG</p>"
 
         session['uploaded_files'] = uploaded_files
         return redirect(url_for('submission'))
 
     return render_template('upload_requirements.html')
-
 
 @web.route('/submission')
 def submission():
@@ -175,7 +158,7 @@ def submission():
         uploaded_files=session.get('uploaded_files', {})
     )
 
-# ------------------ to DB ------------------
+# ------------------ To DB ------------------
 @web.route('/finalize', methods=['POST'])
 def finalize_enrollment():
     pd = session.get('personal_data')
@@ -186,15 +169,16 @@ def finalize_enrollment():
     if not pd or not education or not course or not uploaded:
         return redirect(url_for('home'))
 
+    cursor = db.cursor()
+
     # Insert into student table
     student_sql = """
         INSERT INTO student (FirstName, LastName, MiddleName, Address, LRN, Contact, Email, Gender, BirthDate, Age, Citizenship, CivilStatus)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     student_values = (
-        pd['first_name'], pd['last_name'], pd['middle_name'], pd['address'],
-        pd['lrn'], pd['contact'], pd['email'], pd['gender'],
-        pd['birthdate'], pd['age'], pd['citizenship'], pd['civil_status']
+        pd['first_name'], pd['last_name'], pd['middle_name'], pd['address'], pd['lrn'], pd['contact'],
+        pd['email'], pd['gender'], pd['birthdate'], pd['age'], pd['citizenship'], pd['civil_status']
     )
     cursor.execute(student_sql, student_values)
     db.commit()
@@ -206,51 +190,29 @@ def finalize_enrollment():
         VALUES (%s, %s, %s, %s, %s, %s)
     """
     cursor.execute(parent_sql, (
-        student_id,
-        pd['father_name'],
-        pd['mother_name'],
-        pd['guardian_name'],
-        pd['guardian_occupation'],
-        pd['guardian_contact']
+        student_id, pd['father_name'], pd['mother_name'], pd['guardian_name'], pd['guardian_occupation'], pd['guardian_contact']
     ))
     db.commit()
 
     # Insert into studentcourse
-    course_sql = """
-        INSERT INTO studentcourse (StudentId, IdNumber, YearLvl)
-        VALUES (%s, %s, %s)
-    """
-    cursor.execute(course_sql, (
-        student_id,
-        course['id_number'],
-        course['year_level']
-    ))
+    course_sql = "INSERT INTO studentcourse (StudentId, IdNumber, YearLvl) VALUES (%s, %s, %s)"
+    cursor.execute(course_sql, (student_id, course['id_number'], course['year_level']))
     db.commit()
 
     # Insert into enrollment
-    enroll_sql = """
-        INSERT INTO enrollment (StudentId, EnrollmentStatus, StudentStatus)
-        VALUES (%s, %s, %s)
-    """
-    cursor.execute(enroll_sql, (
-        student_id,
-        course['enroll_status'],
-        course['student_status']
-    ))
+    enroll_sql = "INSERT INTO enrollment (StudentId, EnrollmentStatus, StudentStatus) VALUES (%s, %s, %s)"
+    cursor.execute(enroll_sql, (student_id, course['enroll_status'], course['student_status']))
     db.commit()
 
     # Insert into edubackground
     edubackground_sql = """
-        INSERT INTO edubackground (StudentId, first_gen, elementary, elem_year, elem_honors,
-        highschool, hs_year, hs_honors, college, college_year, college_honors)
+        INSERT INTO edubackground (StudentId, first_gen, elementary, elem_year, elem_honors, highschool, hs_year, hs_honors, college, college_year, college_honors)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     cursor.execute(edubackground_sql, (
-        student_id,
-        education['first_gen'], education['elementary'], education['elem_year'],
-        education['elem_honors'], education['highschool'], education['hs_year'],
-        education['hs_honors'], education['college'], education['college_year'],
-        education['college_honors']
+        student_id, education['first_gen'], education['elementary'], education['elem_year'], education['elem_honors'],
+        education['highschool'], education['hs_year'], education['hs_honors'],
+        education['college'], education['college_year'], education['college_honors']
     ))
     db.commit()
 
@@ -260,10 +222,7 @@ def finalize_enrollment():
         VALUES (%s, %s, %s, %s)
     """
     cursor.execute(requirements_sql, (
-        student_id,
-        uploaded.get('medical_certificate'),
-        uploaded.get('grades'),
-        uploaded.get('org_fee')
+        student_id, uploaded.get('medical_certificate'), uploaded.get('grades'), uploaded.get('org_fee')
     ))
     db.commit()
 
