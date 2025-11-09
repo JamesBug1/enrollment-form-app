@@ -6,6 +6,16 @@
   <title>Student Enrollment Form</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='enrollment-form.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='upload-requirements.css') }}">
+  <style>
+    .hint {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
 
@@ -31,42 +41,58 @@
       <a href="{{ url_for('upload_requirements') }}" class="step-btn active">Upload Requirements</a>
     </div>
 
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
     <form id="uploadForm" method="POST" action="{{ url_for('upload_requirements') }}" enctype="multipart/form-data">
 
       <!-- Medical Certificate -->
       <div class="file-section">
-        <label>Medical Certificate</label>
+        <label for="medical_certificate">Medical Certificate</label>
         <div class="file-box">
           <input type="file" name="medical_certificate" id="medical_certificate" accept=".pdf, .jpg, .jpeg, .png" required>
         </div>
-        <p class="file-info">Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
-        File name must follow this format: <strong>Lastname_Firstname_Medical.pdf</strong></p>
+        <p class="file-info">
+          Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
+          File name must follow this format:
+          <strong>Lastname_Firstname_Medical.pdf</strong><br>
+          <span class="hint">Example: De_Los_Santos_James_Bryle_Medical.pdf</span>
+        </p>
       </div>
 
       <!-- Grades -->
       <div class="file-section">
-        <label>Grades</label>
+        <label for="grades">Grades</label>
         <div class="file-box">
           <input type="file" name="grades" id="grades" accept=".pdf, .jpg, .jpeg, .png" required>
         </div>
-        <p class="file-info">Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
-        File name must follow this format: <strong>Lastname_Firstname_Grades.pdf</strong></p>
+        <p class="file-info">
+          Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
+          File name must follow this format:
+          <strong>Lastname_Firstname_Grades.pdf</strong><br>
+          <span class="hint">Example: De_Los_Santos_James_Bryle_Grades.pdf</span>
+        </p>
       </div>
 
       <!-- Organization Fee Receipt -->
       <div class="file-section">
-        <label>Organization Fee Receipt</label>
+        <label for="org_fee">Organization Fee Receipt</label>
         <div class="file-box">
           <input type="file" name="org_fee" id="org_fee" accept=".pdf, .jpg, .jpeg, .png" required>
         </div>
-        <p class="file-info">Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
-        File name must follow this format: <strong>Lastname_Firstname_OrgFee.pdf</strong></p>
+        <p class="file-info">
+          Accepted formats: PDF, JPG, PNG — Max size: 5MB<br>
+          File name must follow this format:
+          <strong>Lastname_Firstname_OrgFee.pdf</strong><br>
+          <span class="hint">Example: De_Los_Santos_James_Bryle_OrgFee.pdf</span>
+        </p>
       </div>
 
       <!-- Buttons -->
       <div class="button-row">
         <button type="submit" class="btn-finish">Finish</button>
-        <button type="button" class="btn-cancel">Cancel</button>
+        <button type="button" class="btn-cancel" onclick="window.location.href='{{ url_for('course_detail') }}'">Cancel</button>
       </div>
     </form>
   </div>

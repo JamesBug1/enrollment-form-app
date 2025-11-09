@@ -125,6 +125,7 @@ def upload_requirements():
         last_name = personal_data['last_name']
         first_name = personal_data['first_name']
 
+        # Define expected suffixes for files
         expected_suffixes = {
             'medical_certificate': 'Medical',
             'grades': 'Grades',
@@ -135,22 +136,34 @@ def upload_requirements():
             file = request.files.get(field)
 
             if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
+                original_filename = file.filename
+                filename = secure_filename(original_filename)
 
-                expected_prefix = f"{last_name}_{first_name}_{suffix}"
+                # Apply the same sanitization to the expected prefix
+                expected_prefix = secure_filename(f"{last_name}_{first_name}_{suffix}")
+
+                # Compare using sanitized names
                 if not filename.startswith(expected_prefix):
-                    return f"<p>Invalid file name for {field}. Must start with: {expected_prefix}</p>"
+                    return (
+                        f"<p>Invalid file name for <strong>{field}</strong>.<br>"
+                        f>Your uploaded file: {original_filename}<br>"
+                        f>Expected format: {expected_prefix}_[something].pdf/jpg/png</p>"
+                    )
 
                 save_path = os.path.join(web.config['UPLOAD_FOLDER'], filename)
                 file.save(save_path)
                 uploaded_files[field] = filename
             else:
-                return f"<p>Invalid file or format for {field}. Allowed formats: PDF, JPG, PNG</p>"
+                return (
+                    f"<p>Invalid file or format for <strong>{field}</strong>.<br>"
+                    f"Allowed formats: PDF, JPG, JPEG, PNG</p>"
+                )
 
         session['uploaded_files'] = uploaded_files
         return redirect(url_for('submission'))
 
     return render_template('upload_requirements.html')
+
 
 @web.route('/submission')
 def submission():
