@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Submission Summary</title>
-      <link rel="stylesheet" href="{{ url_for('static', filename='submission.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='submission.css') }}">
 </head>
 
 <body>
@@ -27,54 +27,49 @@
                 <span class="field-text">Personal Data</span> <span class="arrow">▼</span>
             </button>
             <div class="details">
-                <!-- First Row -->
                 <div class="row">
-                    <div class="field"><strong>First Name:</strong> __________</div>
-                    <div class="field"><strong>Last Name:</strong> __________</div>
-                    <div class="field"><strong>Middle Name:</strong> __________</div>
+                    <div class="field"><strong>First Name:</strong> {{ personal.first_name }}</div>
+                    <div class="field"><strong>Last Name:</strong> {{ personal.last_name }}</div>
+                    <div class="field"><strong>Middle Name:</strong> {{ personal.middle_name }}</div>
                 </div>
 
-                <!-- Second Row -->
                 <div class="row">
-                    <div class="field full-width"><strong>Address:</strong> __________</div>
-                    <div class="field"><strong>Contact:</strong> __________</div>
-                    <div class="field"><strong>District:</strong> __________</div>
+                    <div class="field full-width"><strong>Address:</strong> {{ personal.address }}</div>
+                    <div class="field"><strong>Contact:</strong> {{ personal.contact }}</div>
+                    <div class="field"><strong>District:</strong> {{ personal.district }}</div>
                 </div>
 
-                <!-- Third Row -->
                 <div class="row">
-                    <div class="field full-width"><strong>Email:</strong> __________</div>
-                    <div class="field"><strong>Gender:</strong> __________</div>
-                    <div class="field"><strong>Birthdate:</strong> __________</div>
-                    <div class="field"><strong>Age:</strong> __________</div>
+                    <div class="field full-width"><strong>Email:</strong> {{ personal.email }}</div>
+                    <div class="field"><strong>Gender:</strong> {{ personal.gender }}</div>
+                    <div class="field"><strong>Birthdate:</strong> {{ personal.birthdate }}</div>
+                    <div class="field"><strong>Age:</strong> {{ personal.age }}</div>
                 </div>
 
-                <!-- Fourth Row -->
                 <div class="row">
-                    <div class="field"><strong>Citizenship:</strong> __________</div>
-                    <div class="field"><strong>Civil Status:</strong> __________</div>
-                    <div class="field"><strong>Religion:</strong> __________</div>
+                    <div class="field"><strong>Citizenship:</strong> {{ personal.citizenship }}</div>
+                    <div class="field"><strong>Civil Status:</strong> {{ personal.civil_status }}</div>
+                    <div class="field"><strong>Religion:</strong> {{ personal.religion }}</div>
                 </div>
 
                 <hr class="form-divider">
 
-                <!-- Parent & Guardian Details -->
                 <div class="row">
-                    <div class="field"><strong>Father’s Name:</strong> __________</div>
-                    <div class="field"><strong>Occupation:</strong> __________</div>
-                    <div class="field"><strong>Contact No.:</strong> __________</div>
+                    <div class="field"><strong>Father’s Name:</strong> {{ personal.father_name }}</div>
+                    <div class="field"><strong>Occupation:</strong> {{ personal.father_occupation }}</div>
+                    <div class="field"><strong>Contact No.:</strong> {{ personal.father_contact }}</div>
                 </div>
 
                 <div class="row">
-                    <div class="field"><strong>Mother’s Name:</strong> __________</div>
-                    <div class="field"><strong>Occupation:</strong> __________</div>
-                    <div class="field"><strong>Contact No.:</strong> __________</div>
+                    <div class="field"><strong>Mother’s Name:</strong> {{ personal.mother_name }}</div>
+                    <div class="field"><strong>Occupation:</strong> {{ personal.mother_occupation }}</div>
+                    <div class="field"><strong>Contact No.:</strong> {{ personal.mother_contact }}</div>
                 </div>
 
                 <div class="row">
-                    <div class="field"><strong>Guardian’s Name:</strong> __________</div>
-                    <div class="field"><strong>Occupation:</strong> __________</div>
-                    <div class="field"><strong>Contact No.:</strong> __________</div>
+                    <div class="field"><strong>Guardian’s Name:</strong> {{ personal.guardian_name }}</div>
+                    <div class="field"><strong>Occupation:</strong> {{ personal.guardian_occupation }}</div>
+                    <div class="field"><strong>Contact No.:</strong> {{ personal.guardian_contact }}</div>
                 </div>
             </div>
         </div>
@@ -86,30 +81,27 @@
             </button>
             <div class="details">
                 <div class="row">
-                    <div class="field"><strong>First Generation Student:</strong> __________</div>
+                    <div class="field"><strong>First Generation Student:</strong> {{ education.first_gen }}</div>
                 </div>
 
                 <hr class="form-divider">
 
-                <!-- Elementary -->
                 <div class="row">
-                    <div class="field"><strong>Elementary School:</strong> __________</div>
-                    <div class="field"><strong>Academic Year:</strong> __________</div>
-                    <div class="field"><strong>Honors Received:</strong> __________</div>
+                    <div class="field"><strong>Elementary School:</strong> {{ education.elementary }}</div>
+                    <div class="field"><strong>Academic Year:</strong> {{ education.elem_year }}</div>
+                    <div class="field"><strong>Honors Received:</strong> {{ education.elem_honors }}</div>
                 </div>
 
-                <!-- High School -->
                 <div class="row">
-                    <div class="field"><strong>High School:</strong> __________</div>
-                    <div class="field"><strong>Academic Year:</strong> __________</div>
-                    <div class="field"><strong>Honors Received:</strong> __________</div>
+                    <div class="field"><strong>High School:</strong> {{ education.highschool }}</div>
+                    <div class="field"><strong>Academic Year:</strong> {{ education.hs_year }}</div>
+                    <div class="field"><strong>Honors Received:</strong> {{ education.hs_honors }}</div>
                 </div>
 
-                <!-- College -->
                 <div class="row">
-                    <div class="field"><strong>College:</strong> __________</div>
-                    <div class="field"><strong>Academic Year:</strong> __________</div>
-                    <div class="field"><strong>Honors Received:</strong> __________</div>
+                    <div class="field"><strong>College:</strong> {{ education.college }}</div>
+                    <div class="field"><strong>Academic Year:</strong> {{ education.college_year }}</div>
+                    <div class="field"><strong>Honors Received:</strong> {{ education.college_honors }}</div>
                 </div>
             </div>
         </div>
@@ -121,23 +113,36 @@
             </button>
             <div class="details">
                 <div class="row">
-                    <div class="field"><strong>ID Number:</strong> __________</div>
-                    <div class="field"><strong>Year Level:</strong> __________</div>
-                    <div class="field"><strong>Course:</strong> __________</div>
+                    <div class="field"><strong>ID Number:</strong> {{ course.id_number }}</div>
+                    <div class="field"><strong>Year Level:</strong> {{ course.year_level }}</div>
+                    <div class="field"><strong>Enrollment Status:</strong> {{ course.enroll_status }}</div>
+                    <div class="field"><strong>Student Status:</strong> {{ course.student_status }}</div>
                 </div>
+            </div>
+        </div>
 
-                <div class="row">
-                    <div class="field"><strong>Major:</strong> __________</div>
-                    <div class="field"><strong>Enrollment Status:</strong> __________</div>
-                    <div class="field"><strong>Student Status:</strong> __________</div>
-                </div>
+        <!-- Uploaded Files Section -->
+        <div class="fields form-card">
+            <button class="toggle-btn">
+                <span class="field-text">Uploaded Files</span> <span class="arrow">▼</span>
+            </button>
+            <div class="details">
+                <ul>
+                    {% for key, file in uploaded_files.items() %}
+                    <li><strong>{{ key.replace('_', ' ').title() }}:</strong> 
+                        <a href="{{ url_for('static', filename='uploads/' ~ file) }}" target="_blank">{{ file }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="buttons">
-            <button class="btn btn-red" onclick="confirmEnrollment()">Confirm & Finalize Enrollment</button>
-            <a href="personaldetails.html" class="btn btn-outline">Edit Information</a>
+            <form method="POST" action="{{ url_for('finalize_enrollment') }}">
+                <button class="btn btn-red" type="submit">Confirm & Finalize Enrollment</button>
+            </form>
+            <a href="{{ url_for('form') }}" class="btn btn-outline">Edit Information</a>
         </div>
     </div>
 
@@ -157,10 +162,6 @@ toggleButtons.forEach(btn => {
         }
     });
 });
-
-function confirmEnrollment() {
-    alert("Enrollment Confirmed!");
-}
 </script>
 
 </body>
