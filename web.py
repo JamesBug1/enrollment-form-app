@@ -122,21 +122,16 @@ def upload_requirements():
         if not personal_data:
             return redirect(url_for('form'))
 
-        last_name = personal_data['last_name']
-        first_name = personal_data['first_name']
         expected_suffixes = {
             'medical_certificate': 'Medical',
             'grades': 'Grades',
             'org_fee': 'OrgFee'
         }
 
-        for field, suffix in expected_suffixes.items():
+        for field in expected_suffixes.keys():
             file = request.files.get(field)
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                expected_prefix = f"{last_name}_{first_name}_{suffix}"
-                if not filename.startswith(expected_prefix):
-                    return f"<p>Invalid file name for {field}. Must start with: {expected_prefix}</p>"
                 save_path = os.path.join(web.config['UPLOAD_FOLDER'], filename)
                 file.save(save_path)
                 uploaded_files[field] = filename
