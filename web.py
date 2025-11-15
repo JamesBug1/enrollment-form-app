@@ -12,19 +12,19 @@ ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
 web.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://enrollment_db_c0sc_user:4jXABgSJJWzzZ4nEmAnipixPSsPoorkJ@dpg-d3sdfbndiees738clih0-a/enrollment_db_c0sc')
+# DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://enrollment_db_c0sc_user:4jXABgSJJWzzZ4nEmAnipixPSsPoorkJ@dpg-d3sdfbndiees738clih0-a.oregon-postgres.render.com/enrollment_db_c0sc')
 # conn = psycopg2.connect(DATABASE_URL)
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if DATABASE_URL:
-    # Parse DATABASE_URL
     result = urllib.parse.urlparse(DATABASE_URL)
     db = psycopg2.connect(
         dbname=result.path[1:],
         user=result.username,
         password=result.password,
         host=result.hostname,
-        port=result.port
+        port=result.port,
+        sslmode="require"
     )
 else:
     # Fallback for local development
@@ -222,7 +222,27 @@ def finalize_enrollment():
     db.commit()
 
     session.clear()
-    return "<h2>Enrollment Successful!</h2><p>Thank you for enrolling.</p>"
+    return redirect(url_for('records'))
+
+@web.route('/records')
+def records():
+    cursor = db.cursor()
+
+    # JOIN tables to get full student info
+    query = """
+        SELECT 
+            s.studentid,
+            CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname) AS fullname,
+            sc.yearlvl,
+            sc.idnumber
+        FROM student s
+        LEFT JOIN studentcourse sc ON s.studentid = sc.studentid
+        ORDER BY s.studentid ASC;
+    """
+
+    cursor.execute(query)
+    students = cursor.fetchall()
+    return render_template('studentRecord.html', students=students)
 
 if __name__ == '__main__':
     web.run(debug=True)

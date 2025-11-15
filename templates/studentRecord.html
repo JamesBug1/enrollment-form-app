@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compilation Records and Analytics</title>
-  <link rel="stylesheet" href="css/students-records.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/students-records.css') }}">
 </head>
 <body>
+
   <!-- Header -->
   <div class="header">
     <h2 class="title">Compilation Records and Analytics</h2>
@@ -20,7 +21,7 @@
       <div class="controls">
         <button class="btn-sort">Sort ⬍</button>
         <div class="search-box">
-          <input type="text" placeholder="Search">
+          <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search">
           <span class="search-icon">🔍</span>
         </div>
       </div>
@@ -28,38 +29,43 @@
 
     <!-- Table -->
     <div class="table-container">
-      <table>
+      <table id="studentTable">
         <thead>
           <tr>
             <th>Student ID</th>
             <th>Name</th>
             <th>Year Level</th>
-            <th>Course</th>
+            <th>Course ID Number</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Sample rows -->
+
+          {% for s in students %}
           <tr>
-            <td>12345667</td>
-            <td>Kathleen Joie T. Belda</td>
-            <td>3rd Year</td>
-            <td>BSIT</td>
+            <td>{{ s[0] }}</td>
+            <td>{{ s[1] }}</td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
           </tr>
-          <tr>
-            <td>2025002</td>
-            <td>Kaira D. Comaling</td>
-            <td>3rd Year</td>
-            <td>BSIT</td>
-          </tr>
-          <tr>
-            <td>2025003</td>
-            <td>Donalen Alvarado</td>
-            <td>3rd Year</td>
-            <td>BSIT</td>
-          </tr>
+          {% endfor %}
+
         </tbody>
       </table>
     </div>
   </div>
+
+  <!-- Simple Search Script -->
+  <script>
+    function searchTable() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let rows = document.querySelectorAll("#studentTable tbody tr");
+
+      rows.forEach(row => {
+        row.style.display =
+          row.innerText.toLowerCase().includes(input) ? "" : "none";
+      });
+    }
+  </script>
+
 </body>
 </html>
