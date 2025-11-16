@@ -33,7 +33,6 @@ footer {
     color: #444;
 }
 
-/* Inputs */
 .row {
   display: flex;
   gap: 10px;
@@ -57,14 +56,12 @@ footer {
   margin-right: 5px;
 }
 
-/* Divider */
 hr {
   border: none;
   border-top: 1.5px solid #b30000;
   margin: 15px 0;
 }
 
-/* Checkbox */
 .checkbox-row {
   margin-bottom: 15px;
 }
@@ -73,12 +70,12 @@ hr {
   margin-right: 6px;
 }
 
-/* Buttons */
 .btn-row {
   display: flex;
   gap: 15px;
   justify-content: center;
 }
+
 .btn-finish {
   background: #b30000;
   color: #fff;
@@ -88,6 +85,7 @@ hr {
   font-weight: bold;
   cursor: pointer;
 }
+
 .btn-cancel {
   background: #fff;
   color: #000;
@@ -95,4 +93,143 @@ hr {
   border: 1.5px solid #000;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.form-container {
+    max-width: 900px;
+    margin: 100px auto 30px;
+    padding: 20px;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.step-btn {
+    padding: 8px 12px;
+    border: 1px solid #b30000;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #b30000;
+    font-size: 0.9rem;
+}
+
+.step-btn.active {
+    background: #b30000;
+    color: #fff;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.row input,
+.row select {
+  flex: 1;
+  padding: 10px;
+  border: 1.5px solid #b30000;
+  border-radius: 6px;
+}
+
+.row-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.row-inline label {
+  white-space: nowrap;
+}
+
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-next,
+.btn-cancel {
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-next {
+  background: #b30000;
+  color: #fff;
+  border: none;
+}
+
+.btn-cancel {
+  background: #fff;
+  border: 1.5px solid #000;
+}
+
+@media (max-width: 768px) {
+
+  .header-bar h2 {
+    font-size: 0.9rem;
+  }
+
+  .step-indicator {
+    font-size: 0.85rem;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .row-inline {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .step-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-row {
+    flex-direction: column;
+  }
+
+  .btn-next,
+  .btn-cancel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  .header-bar h2 {
+    font-size: 0.8rem;
+  }
+
+  .row input,
+  .row select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
 }

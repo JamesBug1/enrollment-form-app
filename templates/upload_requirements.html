@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Enrollment Form</title>
+
   <link rel="stylesheet" href="{{ url_for('static', filename='enrollment-form.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='upload-requirements.css') }}" />
 </head>
@@ -37,11 +38,12 @@
       <div class="file-section">
         <label>Medical Certificate</label>
         <div class="file-box">
-          <input type="file" name="medical_certificate" id="medical_certificate" accept=".pdf, .jpg, .jpeg, .png" required />
+          <input type="file" name="medical_certificate" id="medical_certificate"
+            accept=".pdf, .jpg, .jpeg, .png" required />
         </div>
         <p class="file-info">
           Accepted formats: PDF, JPG, PNG — Max size: 5MB<br />
-          File name must follow this format: <strong>Lastname_Firstname_Medical.pdf</strong>
+          File name format: <strong>Lastname_Firstname_Medical.pdf</strong>
         </p>
       </div>
 
@@ -49,11 +51,12 @@
       <div class="file-section">
         <label>Grades</label>
         <div class="file-box">
-          <input type="file" name="grades" id="grades" accept=".pdf, .jpg, .jpeg, .png" required />
+          <input type="file" name="grades" id="grades"
+            accept=".pdf, .jpg, .jpeg, .png" required />
         </div>
         <p class="file-info">
           Accepted formats: PDF, JPG, PNG — Max size: 5MB<br />
-          File name must follow this format: <strong>Lastname_Firstname_Grades.pdf</strong>
+          File name format: <strong>Lastname_Firstname_Grades.pdf</strong>
         </p>
       </div>
 
@@ -61,11 +64,12 @@
       <div class="file-section">
         <label>Organization Fee Receipt</label>
         <div class="file-box">
-          <input type="file" name="org_fee" id="org_fee" accept=".pdf, .jpg, .jpeg, .png" required />
+          <input type="file" name="org_fee" id="org_fee"
+            accept=".pdf, .jpg, .jpeg, .png" required />
         </div>
         <p class="file-info">
           Accepted formats: PDF, JPG, PNG — Max size: 5MB<br />
-          File name must follow this format: <strong>Lastname_Firstname_OrgFee.pdf</strong>
+          File name format: <strong>Lastname_Firstname_OrgFee.pdf</strong>
         </p>
       </div>
 
@@ -74,6 +78,7 @@
         <button type="submit" class="btn-finish">Finish</button>
         <button type="button" class="btn-cancel">Cancel</button>
       </div>
+
     </form>
   </div>
 
@@ -82,4 +87,4 @@
   </footer>
 
 </body>
-</html> 
+</html>

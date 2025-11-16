@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='enrollment-form.css') }}">
 </head>
 <body>
-  <!-- Header -->
   <div class="header-bar">
     <h2>Student Enrollment Form</h2>
   </div>
@@ -19,7 +18,6 @@
 
   <div class="form-container">
 
-    <!-- Step Progress -->
     <div class="steps">
       <a href="{{ url_for('form') }}" class="step-btn">Personal Data</a>
       <span class="arrow">→</span>
@@ -31,7 +29,6 @@
   </div>
 
 
-    <!-- Form with id -->
     <form id="form-7" action="{{ url_for('course_detail') }}" method="POST">
       <div class="row">
         <input type="text" name="id_number" placeholder="ID Number" required>

@@ -27,18 +27,16 @@ body {
   font-size: 1rem;
 }
 
-
 .text {
-  text-align: left;
-  margin-left: 40px;
-  font-size: 0.95rem;
   margin-top: 80px;
   margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 0.95rem;
   font-weight: bold;
   color: #444;
 }
 
-/* Main content */
 .content {
   padding: 25px 20px 40px;
   min-height: calc(100vh - 120px);
@@ -52,58 +50,57 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.fields button {
+.fields button.toggle-btn {
   width: 100%;
   background: #fff;
   border: none;
-  padding: 12px 15px; 
+  padding: 12px 15px;
   font-size: 15px;
   font-weight: bold;
   color: #a00000;
   text-align: left;
   border-radius: 8px;
   cursor: pointer;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px; 
+
+  margin-bottom: 5px;
 }
 
 .fields button:hover {
   background: #fbecec;
 }
 
+/* Rotate arrow when active */
 .toggle-btn.active .arrow {
   transform: rotate(180deg);
-  transition: transform 0.3s ease;
+  transition: 0.3s ease;
 }
 
+/* Details section */
 .details {
-    display: none; 
-    margin-top: 10px;
-    font-size: 0.95rem;
-    color: #333;
+  display: none;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #333;
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .field {
-    flex: 1 1 calc(33.33% - 10px);
-    min-width: 120px;
+  flex: 1 1 calc(33.33% - 10px);
+  min-width: 150px;
 }
 
 .field.full-width {
-    flex: 1 1 100%;
-}
-
-
-.details p {
-  margin: 5px 0;
+  flex: 1 1 100%;
 }
 
 .details hr {
@@ -112,15 +109,15 @@ body {
   margin: 10px 0;
 }
 
-/* Buttons */
+/* Uploaded files list */
+.details ul {
+  margin-left: 20px;
+  line-height: 1.5rem;
+}
+
 .buttons {
   text-align: center;
   margin-top: 30px;
-}
-
-a.btn {
-  text-decoration: none;
-  display: inline-block;
 }
 
 .btn {
@@ -131,6 +128,8 @@ a.btn {
   cursor: pointer;
   margin: 5px;
   transition: 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .btn-red {
@@ -152,4 +151,73 @@ a.btn {
 .btn-outline:hover {
   background: #a00000;
   color: #fff;
+}
+
+
+@media (max-width: 900px) {
+  .field {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .text {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .header h2 {
+    font-size: 0.9rem;
+  }
+
+  .text {
+    margin-top: 85px;
+    font-size: 0.85rem;
+  }
+
+  .content {
+    padding: 20px 15px 30px;
+  }
+
+  .field {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .toggle-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+
+  .header h2 {
+    font-size: 0.8rem;
+  }
+
+  .text {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .toggle-btn {
+    font-size: 13px;
+  }
+
+  .field {
+    font-size: 0.85rem;
+  }
 }
