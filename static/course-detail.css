@@ -97,8 +97,8 @@ hr {
 
 .form-container {
     max-width: 900px;
-    margin: 100px auto 30px;
-    padding: 20px;
+    width: 100%;
+    padding: 1rem;
 }
 
 .steps {
