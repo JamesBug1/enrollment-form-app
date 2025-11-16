@@ -37,21 +37,19 @@ footer {
 
 /* -------- STEP INDICATOR -------- */
 .step-indicator {
-    margin-top: 70px;
-    margin-bottom: 1rem;
+    text-align: center;
     font-size: 0.95rem;
+    margin-top: 70px; /* prevents overlap */
     font-weight: bold;
     color: #444;
 }
 
-/* -------- FORM CONTAINER -------- */
 .form-container {
     max-width: 900px;
     width: 100%;
     padding: 1rem;
 }
 
-/* -------- PROGRESS STEPS -------- */
 .steps {
     display: flex;
     flex-wrap: wrap;
@@ -64,17 +62,16 @@ footer {
     padding: 6px 14px;
     border: 1.5px solid #b30000;
     border-radius: 5px;
-    text-decoration: none;
     font-size: 0.9rem;
     color: #b30000;
+    text-decoration: none;
 }
 
 .step-btn.active {
     background: #b30000;
-    color: #fff;
+    color: white;
 }
 
-/* -------- FORM GRID -------- */
 form {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -23,9 +23,11 @@ body {
 }
 
 .step-indicator {
-  text-align: center;
-  margin-top: 80px;
-  font-weight: 600;
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: 70px; /* prevents overlap */
+    font-weight: bold;
+    color: #444;
 }
 
 .form-container {
@@ -39,28 +41,25 @@ body {
 }
 
 .steps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
 }
 
 .step-btn {
-  border: 1px solid #c1272d;
-  padding: 8px 15px;
-  border-radius: 20px;
-  text-decoration: none;
-  color: #c1272d;
-  font-weight: 600;
-  display: inline-block;
-  white-space: nowrap;
-  text-align: center;
+    padding: 6px 14px;
+    border: 1.5px solid #b30000;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #b30000;
+    text-decoration: none;
 }
 
 .step-btn.active {
-  background-color: #c1272d;
-  color: #fff;
+    background: #b30000;
+    color: white;
 }
 
 .arrow {
