@@ -31,14 +31,6 @@
     padding: 15px;
 }
 
-.steps {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 20px;
-}
-
 .step-btn {
     padding: 6px 14px;
     border: 1.5px solid #b30000;
