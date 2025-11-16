@@ -25,6 +25,34 @@
     color: #444; 
 }
 
+.form-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.step-btn {
+    padding: 6px 14px;
+    border: 1.5px solid #b30000;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #b30000;
+    text-decoration: none;
+}
+
+.step-btn.active {
+    background: #b30000;
+    color: white;
+}
+
 /* Inputs */
 .row { 
     display: flex; 

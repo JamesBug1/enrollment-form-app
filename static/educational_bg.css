@@ -45,9 +45,16 @@ footer {
 
 .form-container {
     max-width: 900px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+/*
+.form-container {
+    max-width: 900px;
     width: 100%;
     padding: 1rem;
-}
+} */
 
 .steps {
     display: flex;
